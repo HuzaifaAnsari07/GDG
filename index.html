@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDSC Resources</title>
+  <link rel="stylesheet" href="resources.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Dynamic background starts -->
+  <div class="animated-bg"></div>
+  <!-- Dynamic background ends -->
+
+  <!-- Resource starts -->
+  <section id="resources">
+    <div class="container">
+      <h2 class="section-title">📚 Resources</h2>
+      <p class="subtitle">Handpicked learning materials to help you grow as a developer.</p>
+
+      <div class="resource-grid">
+        <div class="resource-card" data-title="MDN Web Docs"
+          data-text="This is some dummy text for MDN Web Docs. You can download PDF resources related to HTML, CSS, and JavaScript."
+          data-pdf="dummy-mdn.pdf">
+          <i class="fa-brands fa-google"></i>
+          <h3>MDN Web Docs</h3>
+          <p>Comprehensive documentation for HTML, CSS, JavaScript, and more.</p>
+        </div>
+
+        <div class="resource-card" data-title="CSS-Tricks"
+          data-text="This is some dummy text for CSS-Tricks. You can download CSS tutorials and PDF guides."
+          data-pdf="dummy-csstricks.pdf">
+          <i class="fa-solid fa-paintbrush"></i>
+          <h3>CSS-Tricks</h3>
+          <p>Tips, tricks, and techniques related to web design and CSS.</p>
+        </div>
+
+        <div class="resource-card" data-title="freeCodeCamp"
+          data-text="This is some dummy text for freeCodeCamp. You can download coding exercises and PDF tutorials."
+          data-pdf="dummy-freecodecamp.pdf">
+          <i class="fa-solid fa-code"></i>
+          <h3>freeCodeCamp</h3>
+          <p>Learn to code for free with interactive tutorials and challenges.</p>
+        </div>
+
+        <div class="resource-card" data-title="Stack Overflow"
+          data-text="This is some dummy text for Stack Overflow. You can download Q&A resources and guides."
+          data-pdf="dummy-stackoverflow.pdf">
+          <i class="fa-solid fa-comments"></i>
+          <h3>Stack Overflow</h3>
+          <p>A community-driven platform for programming questions and answers.</p>
+        </div>
+
+        <div class="resource-card" data-title="W3Schools"
+          data-text="This is some dummy text for W3Schools. You can download beginner-friendly tutorials and PDF examples."
+          data-pdf="dummy-w3schools.pdf">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <h3>W3Schools</h3>
+          <p>Learning resources for web technologies with examples.</p>
+        </div>
+
+        <div class="resource-card" data-title="Google Developers"
+          data-text="This is some dummy text for Google Developers. You can download guides, tools, and PDF documentation."
+          data-pdf="dummy-googledev.pdf">
+          <i class="fa-brands fa-google"></i>
+          <h3>Google Developers</h3>
+          <p>Official resources, tools, and documentation from Google.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Resource ends -->
+
+  <!-- Gallery starts -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">📖 GDG Album</h2>
+      <p class="subtitle">Flip through the beautiful memories of our GDG journey.</p>
+
+      <div class="album">
+        <div class="album-page cover-page active">
+          <div class="cover-content">
+            <img src="Pictures/GDG Logo.png" alt="GDG Logo" class="gdg-logo">
+            <h2>💙 Welcome to Our GDG Journey</h2>
+            <p>Together we learn, build, and grow 🚀</p>
+          </div>
+        </div>
+
+
+        <div class="album-page"><img src="Pictures/image1.png" alt="Event 1"></div>
+        <div class="album-page"><img src="Pictures/image2.jpg" alt="Event 2"></div>
+        <div class="album-page"><img src="Pictures/image3.jpg" alt="Event 3"></div>
+        <div class="album-page"><img src="Pictures/image4.jpg" alt="Event 4"></div>
+        <div class="album-page"><img src="Pictures/image5.jpg" alt="Event 5"></div>
+        <div class="album-page"><img src="Pictures/image6.jpg" alt="Event 6"></div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div class="album-controls">
+        <button id="prevBtn" class="album-btn">⬅ Prev</button>
+        <button id="nextBtn" class="album-btn">Next ➡</button>
+      </div>
+    </div>
+  </section>
+  <!-- Gallery ends -->
+
+
+  <!-- Modals same as before... -->
+  <div id="resourceModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle">Title</h2>
+      <p id="modalText">Description text goes here.</p>
+      <a id="downloadBtn" href="#" target="_blank" class="btn">Download PDF</a>
+    </div>
+  </div>
+
+  <div id="galleryModal" class="modal">
+    <div class="modal-content gallery-modal">
+      <span class="close">&times;</span>
+      <img id="galleryModalImg" src="" alt="Gallery Image">
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("resourceModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const closeBtns = document.querySelectorAll(".modal .close");
+
+    document.querySelectorAll(".resource-card").forEach(card => {
+      card.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modal.classList.add('show');
+        modalTitle.textContent = card.dataset.title;
+        modalText.textContent = card.dataset.text;
+        downloadBtn.href = card.dataset.pdf;
+      });
+    });
+
+    closeBtns.forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.target.closest(".modal").classList.remove('show');
+        setTimeout(() => { e.target.closest(".modal").style.display = "none"; }, 300);
+      });
+    });
+
+    window.addEventListener("click", e => {
+      if (e.target.classList.contains("modal")) {
+        e.target.classList.remove('show');
+        setTimeout(() => { e.target.style.display = "none"; }, 300);
+      }
+    });
+
+    const galleryModal = document.getElementById("galleryModal");
+    const galleryModalImg = document.getElementById("galleryModalImg");
+
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        galleryModal.style.display = "flex";
+        galleryModal.classList.add("show");
+        galleryModalImg.src = img.src;
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>
