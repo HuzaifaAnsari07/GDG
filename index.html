@@ -124,49 +124,6 @@
       <img id="galleryModalImg" src="" alt="Gallery Image">
     </div>
   </div>
-
-  <script>
-    const modal = document.getElementById("resourceModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalText = document.getElementById("modalText");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const closeBtns = document.querySelectorAll(".modal .close");
-
-    document.querySelectorAll(".resource-card").forEach(card => {
-      card.addEventListener("click", () => {
-        modal.style.display = "flex";
-        modal.classList.add('show');
-        modalTitle.textContent = card.dataset.title;
-        modalText.textContent = card.dataset.text;
-        downloadBtn.href = card.dataset.pdf;
-      });
-    });
-
-    closeBtns.forEach(btn => {
-      btn.addEventListener("click", e => {
-        e.target.closest(".modal").classList.remove('show');
-        setTimeout(() => { e.target.closest(".modal").style.display = "none"; }, 300);
-      });
-    });
-
-    window.addEventListener("click", e => {
-      if (e.target.classList.contains("modal")) {
-        e.target.classList.remove('show');
-        setTimeout(() => { e.target.style.display = "none"; }, 300);
-      }
-    });
-
-    const galleryModal = document.getElementById("galleryModal");
-    const galleryModalImg = document.getElementById("galleryModalImg");
-
-    document.querySelectorAll(".gallery-item img").forEach(img => {
-      img.addEventListener("click", () => {
-        galleryModal.style.display = "flex";
-        galleryModal.classList.add("show");
-        galleryModalImg.src = img.src;
-      });
-    });
-  </script>
   <script src="script.js"></script>
 </body>
 
